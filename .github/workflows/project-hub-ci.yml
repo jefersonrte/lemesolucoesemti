@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - feat/project-hub-menu
+      - "feat/pet-*"
   pull_request:
     branches:
       - main
@@ -28,10 +29,23 @@ jobs:
           tools: none
 
       - name: Lint PHP
-        run: php -l index.php
+        shell: bash
+        run: find . -type f -name "*.php" -not -path "./.git/*" -print0 | xargs -0 -n1 php -l
 
       - name: Check JavaScript
-        run: node --check frontend/js/home.js
+        run: |
+          node --check frontend/js/home.js
+          node --check pet/frontend/js/app.js
+
+      - name: Check Pet dashboard contracts
+        shell: bash
+        run: |
+          test -s pet/index.php
+          test -s pet/api/dashboard.php
+          test -s pet/frontend/css/app.css
+          grep -q "pet/api/relatorios.php" pet/api/dashboard.php
+          grep -q "Dashboard Pet" pet/index.php
+          grep -q "preg_match.*https" api-client.php
 
       - name: Check project hub links
         shell: bash

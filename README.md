@@ -23,3 +23,10 @@ comportamento e imagem ficam separados em `frontend`. Consulte
 
 Credenciais de hospedagem, banco, API e arquivos de configuracao de producao nao
 devem ser versionados. O deploy usa apenas segredos protegidos do GitHub Actions.
+
+## Dashboard Pet 1.1.0
+
+O diretorio `pet/` contem a visualizacao gerencial. O backend local autentica o
+usuario, chama o relatorio agregado do dominio principal com a API key guardada
+em `config.php` e repassa somente indicadores ao navegador. Consulte
+`docs/PET_DASHBOARD.md`.
