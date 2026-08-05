@@ -86,6 +86,7 @@ jobs:
           mkdir -p pet/api
           mkdir -p pet/frontend/css
           mkdir -p pet/frontend/js
+          mkdir -p pet/includes
           put -O / index.php
           put -O / api-client.php
           put -O / login.php
@@ -94,10 +95,14 @@ jobs:
           put -O /frontend/js frontend/js/home.js
           put -O /frontend/assets frontend/assets/matrix-city-v2.webp
           put -O /pet pet/index.php
+          put -O /pet pet/callback.php
+          put -O /pet pet/logout.php
           put -O /pet pet/.htaccess
           put -O /pet/api pet/api/dashboard.php
           put -O /pet/frontend/css pet/frontend/css/app.css
           put -O /pet/frontend/js pet/frontend/js/app.js
+          put -O /pet/includes pet/includes/session.php
+          put -O /pet/includes pet/includes/client.php
           bye
           LFTP_COMMANDS
 
@@ -111,7 +116,10 @@ jobs:
               grep -q "Todos os projetos Leme" page.html && \
               curl --silent --show-error --fail --max-time 30 \
                 https://lemesolucoesemti.com.br/pet/frontend/css/app.css -o pet.css && \
-              grep -q -- "--green: #1f765d" pet.css; then
+              grep -q -- "--green: #1f765d" pet.css && \
+              curl --silent --show-error --head --max-time 30 \
+                https://lemesolucoesemti.com.br/pet/ -o pet.headers && \
+              grep -qi "location: https://lemeinformatica.com.br/pet/sso-start.php" pet.headers; then
               exit 0
             fi
             sleep 5

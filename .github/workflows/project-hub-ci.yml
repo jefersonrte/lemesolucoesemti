@@ -43,9 +43,12 @@ jobs:
           test -s pet/index.php
           test -s pet/api/dashboard.php
           test -s pet/frontend/css/app.css
-          grep -q "pet/api/relatorios.php" pet/api/dashboard.php
+          grep -q "relatorios.php" pet/api/dashboard.php
           grep -q "Dashboard Pet" pet/index.php
-          grep -q "preg_match.*https" api-client.php
+          grep -q "sso-start.php" pet/index.php
+          test -s pet/callback.php
+          test -s pet/includes/session.php
+          test -s pet/includes/client.php
 
       - name: Check project hub links
         shell: bash

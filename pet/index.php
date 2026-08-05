@@ -1,13 +1,12 @@
 <?php
 declare(strict_types=1);
 
-require_once dirname(__DIR__) . '/auth/security.php';
+require_once __DIR__ . '/includes/session.php';
 
-apply_security_headers();
-start_secure_session();
-$user = current_user();
+pet_dashboard_headers();
+$user = pet_dashboard_user();
 if ($user === null) {
-    header('Location: ../login.php?next=pet');
+    header('Location: https://lemeinformatica.com.br/pet/sso-start.php');
     exit;
 }
 ?>
@@ -18,8 +17,8 @@ if ($user === null) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light">
     <title>Dashboard Pet | Leme Solucoes em TI</title>
-    <link rel="stylesheet" href="frontend/css/app.css?v=1.1.0">
-    <script src="frontend/js/app.js?v=1.1.0" defer></script>
+    <link rel="stylesheet" href="frontend/css/app.css?v=1.1.1">
+    <script src="frontend/js/app.js?v=1.1.1" defer></script>
 </head>
 <body>
     <header class="app-header">
@@ -27,9 +26,9 @@ if ($user === null) {
         <div class="header-actions">
             <span class="user-name"><?= htmlspecialchars($user['nome'], ENT_QUOTES, 'UTF-8') ?></span>
             <a class="icon-link" href="../" title="Central de projetos" aria-label="Central de projetos">&#8962;</a>
-            <form method="post" action="../logout.php">
-                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token(), ENT_QUOTES, 'UTF-8') ?>">
-                <button class="logout-button" type="submit">Sair</button>
+            <form method="post" action="logout.php">
+                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(pet_dashboard_csrf(), ENT_QUOTES, 'UTF-8') ?>">
+                <button class="logout-button" type="submit">Fechar painel</button>
             </form>
         </div>
     </header>

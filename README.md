@@ -26,7 +26,7 @@ devem ser versionados. O deploy usa apenas segredos protegidos do GitHub Actions
 
 ## Dashboard Pet 1.1.0
 
-O diretorio `pet/` contem a visualizacao gerencial. O backend local autentica o
-usuario, chama o relatorio agregado do dominio principal com a API key guardada
-em `config.php` e repassa somente indicadores ao navegador. Consulte
+O diretorio `pet/` contem a visualizacao gerencial. O backend usa a autenticacao
+central da Leme Informatica por codigo unico, mantem o token somente na sessao
+PHP e repassa apenas indicadores agregados ao navegador. Consulte
 `docs/PET_DASHBOARD.md`.

@@ -7,7 +7,7 @@ Versao inicial: 1.1.0, 2026-08-05.
 ```text
 Navegador autenticado
   -> /pet/api/dashboard.php
-  -> api-client.php (API key somente no servidor)
+  -> token SSO na sessao PHP do servidor
   -> https://lemeinformatica.com.br/pet/api/relatorios.php
   -> banco principal
 ```
@@ -18,17 +18,20 @@ Nenhum nome, contato, fotografia ou prontuario cruza os dominios.
 
 ## Autenticacao
 
-O dashboard reutiliza a sessao existente da Leme Solucoes em TI. Quando a
-sessao nao existe, `/pet/` redireciona para `/login.php?next=pet`, e o login
-retorna ao dashboard por um destino fixo permitido.
+O dashboard reutiliza diretamente a autenticacao central da Leme Informatica.
+Quando a sessao nao existe, `/pet/` redireciona ao dominio principal, que emite
+um codigo unico. O backend troca esse codigo por um token sem expor senha ou
+chave permanente no segundo dominio.
 
 ## Arquivos
 
 - `pet/index.php`: pagina protegida;
+- `pet/callback.php`: troca segura do codigo de acesso;
 - `pet/api/dashboard.php`: proxy autenticado;
+- `pet/includes/session.php`: sessao local sem banco;
+- `pet/includes/client.php`: cliente HTTPS do relatorio;
 - `pet/frontend/css/app.css`: layout responsivo;
 - `pet/frontend/js/app.js`: indicadores e graficos;
-- `api-client.php`: cliente servidor a servidor.
 
 ## Publicacao
 

@@ -47,7 +47,7 @@
             const response = await fetch('api/dashboard.php', { headers: { Accept: 'application/json' }, credentials: 'same-origin' });
             const payload = await response.json().catch(() => ({ ok: false, erro: 'Resposta invalida do servidor.' }));
             if (response.status === 401) {
-                window.location.href = '../login.php?next=pet';
+                window.location.href = 'https://lemeinformatica.com.br/pet/sso-start.php';
                 return;
             }
             if (!response.ok || payload.ok === false) throw new Error(payload.erro || 'Falha na integracao com a API Pet.');

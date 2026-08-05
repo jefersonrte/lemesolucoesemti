@@ -1,10 +1,16 @@
 <?php
 declare(strict_types=1);
 
-require_once dirname(__DIR__, 2) . '/auth/security.php';
-require_once dirname(__DIR__, 2) . '/api-client.php';
+require_once dirname(__DIR__) . '/includes/session.php';
+require_once dirname(__DIR__) . '/includes/client.php';
 
-apply_security_headers();
-require_login(true);
+pet_dashboard_headers();
+$user = pet_dashboard_user();
+if ($user === null) {
+    pet_dashboard_json_error('A sessao integrada expirou. Entre novamente.');
+}
 
-relay_json(main_api_request('https://lemeinformatica.com.br/pet/api/relatorios.php'));
+$response = pet_dashboard_remote_request('relatorios.php', 'GET', pet_dashboard_token());
+http_response_code((int) $response['status']);
+header('Content-Type: application/json; charset=utf-8');
+echo $response['body'];
