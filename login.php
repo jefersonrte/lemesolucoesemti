@@ -4,8 +4,9 @@ require_once __DIR__ . '/auth/security.php';
 apply_security_headers();
 start_secure_session();
 
+$next = ($_GET['next'] ?? '') === 'pet' ? 'pet' : '';
 if (is_logged_in()) {
-    redirect('index.php');
+    redirect($next === 'pet' ? 'pet/' : 'index.php');
 }
 
 $erro = $_GET['erro'] ?? '';
@@ -44,6 +45,7 @@ if ($erro === '1') {
 
         <form method="post" action="login-processa.php" class="login-form" autocomplete="on">
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token(), ENT_QUOTES, 'UTF-8') ?>">
+            <input type="hidden" name="next" value="<?= htmlspecialchars($next, ENT_QUOTES, 'UTF-8') ?>">
 
             <label>
                 E-mail

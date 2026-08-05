@@ -3,7 +3,9 @@ require_once __DIR__ . '/config.php';
 
 function main_api_request(string $endpoint, string $method = 'GET', ?string $body = null): array
 {
-    $url = rtrim(API_BASE_URL, '/') . '/' . ltrim($endpoint, '/');
+    $url = preg_match('#^https://#i', $endpoint)
+        ? $endpoint
+        : rtrim(API_BASE_URL, '/') . '/' . ltrim($endpoint, '/');
 
     $headers = [
         'Accept: application/json',
