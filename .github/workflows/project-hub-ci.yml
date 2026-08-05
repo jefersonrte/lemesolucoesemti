@@ -1,0 +1,51 @@
+name: Project Hub CI
+
+on:
+  push:
+    branches:
+      - main
+      - feat/project-hub-menu
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validar menu de projetos
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          coverage: none
+          tools: none
+
+      - name: Lint PHP
+        run: php -l index.php
+
+      - name: Check JavaScript
+        run: node --check frontend/js/home.js
+
+      - name: Check project hub links
+        shell: bash
+        run: |
+          grep -q "https://lemeinformatica.com.br/pet/" index.php
+          grep -q "https://lemesolucoesemti.com.br/pet/" index.php
+          grep -q "https://lemeinformatica.com.br/gov/" index.php
+          grep -q "https://lemesolucoesemti.com.br/gov/" index.php
+          grep -q "https://lemesolucoesemti.com.br/invest/" index.php
+          grep -q "https://lemeinformatica.com.br/login.php" index.php
+
+      - name: Check assets
+        shell: bash
+        run: |
+          test -s frontend/css/home.css
+          test -s frontend/js/home.js
+          test -s frontend/assets/matrix-city-v2.webp

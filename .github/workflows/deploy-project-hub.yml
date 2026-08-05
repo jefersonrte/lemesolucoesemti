@@ -1,0 +1,95 @@
+name: Deploy Project Hub
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - index.php
+      - frontend/css/home.css
+      - frontend/js/home.js
+      - frontend/assets/matrix-city-v2.webp
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hostinger-project-hub
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Publicar menu de projetos
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: production
+      url: https://lemesolucoesemti.com.br/
+
+    steps:
+      - name: Baixar versao aprovada
+        uses: actions/checkout@v6
+
+      - name: Validar credenciais protegidas
+        env:
+          FTP_SERVER: ${{ secrets.HOSTINGER_FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          test -n "$FTP_SERVER"
+          test -n "$FTP_USERNAME"
+          test -n "$FTP_PASSWORD"
+
+      - name: Preparar cliente FTPS
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends lftp
+
+      - name: Publicar arquivos do menu
+        env:
+          FTP_SERVER: ${{ secrets.HOSTINGER_FTP_SERVER }}
+          FTP_TLS_HOST: srv1543.hstgr.io
+          FTP_USERNAME: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          printf '%s %s\n' "$FTP_SERVER" "$FTP_TLS_HOST" |
+            sudo tee -a /etc/hosts >/dev/null
+
+          lftp -u "$FTP_USERNAME","$FTP_PASSWORD" "ftp://$FTP_TLS_HOST" <<'LFTP_COMMANDS'
+          set cmd:fail-exit true
+          set ftp:ssl-force true
+          set ftp:ssl-protect-data true
+          set ssl:verify-certificate true
+          set net:max-retries 3
+          set net:timeout 30
+          mkdir -p frontend/css
+          mkdir -p frontend/js
+          mkdir -p frontend/assets
+          put -O / index.php
+          put -O /frontend/css frontend/css/home.css
+          put -O /frontend/js frontend/js/home.js
+          put -O /frontend/assets frontend/assets/matrix-city-v2.webp
+          bye
+          LFTP_COMMANDS
+
+      - name: Verificar pagina publicada
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          for attempt in $(seq 1 10); do
+            if curl --silent --show-error --fail --max-time 30 \
+              https://lemesolucoesemti.com.br/ -o page.html && \
+              grep -q "Todos os projetos Leme" page.html; then
+              exit 0
+            fi
+            sleep 3
+          done
+          exit 1
