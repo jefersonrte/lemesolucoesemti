@@ -35,16 +35,5 @@ CREATE TABLE IF NOT EXISTS auth_audit_log (
     CONSTRAINT fk_auth_audit_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios_admin(id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Usuario inicial para primeiro acesso.
--- E-mail: admin@lemesolucoesemti.com.br
--- Senha: Admin@2026!
--- Troque a senha imediatamente depois da instalacao.
-INSERT INTO usuarios_admin (nome, email, senha_hash, perfil, ativo)
-VALUES (
-    'Administrador',
-    'admin@lemesolucoesemti.com.br',
-    '$2y$12$ycUoniSLVHpdWFIbaIfjy.5hIkDQdiA0o4.JSPobt5LEcM07dyry.',
-    'admin',
-    1
-)
-ON DUPLICATE KEY UPDATE email = email;
+-- Crie o primeiro administrador por um procedimento privado de instalacao.
+-- Nunca grave senha ou hash padrao neste arquivo versionado.

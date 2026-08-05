@@ -24,13 +24,9 @@
 
 ## Primeiro acesso
 
-Depois de rodar o SQL `sql/create_auth_tables.sql`, o sistema cria este usuario inicial:
-
-- E-mail: `admin@lemesolucoesemti.com.br`
-- Senha: `Admin@2026!`
-- Perfil: `admin`
-
-Troque essa senha imediatamente depois da instalacao.
+O SQL cria apenas a estrutura. O primeiro administrador deve ser inserido com
+e-mail definido pelo responsavel e um hash produzido por `password_hash`.
+Senhas iniciais nao ficam em arquivos, commits ou documentacao publica.
 
 ## Instalar no banco local
 
