@@ -149,7 +149,7 @@ jobs:
               grep -qi "location: painel.php" invest.headers && \
               curl --silent --show-error --head --max-time 30 \
                 https://lemesolucoesemti.com.br/powerbi/ -o powerbi.headers && \
-              grep -qi "location: /login.php?next=powerbi" powerbi.headers && \
+              grep -qi "location: https://lemeinformatica.com.br/pet/sso-start.php?next=powerbi" powerbi.headers && \
               curl --silent --show-error --fail --max-time 30 \
                 https://lemesolucoesemti.com.br/pet/frontend/css/app.css -o pet.css && \
               grep -q -- "--green: #1f765d" pet.css && \

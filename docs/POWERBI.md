@@ -2,9 +2,12 @@
 
 ## Relatorio web
 
-`/powerbi/` exige login e consome os proxies protegidos de `api/`. Quando uma
-sessao expira, o usuario retorna para `/login.php?next=powerbi` e volta ao
-relatorio depois de autenticar.
+`/powerbi/` usa o SSO central da Leme Informatica. Quando nao ha sessao, o
+usuario segue para `lemeinformatica.com.br`, autentica com a mesma senha do
+sistema principal e retorna ao relatorio por um codigo de uso unico.
+
+O navegador consulta somente `powerbi/dados.php`. Esse proxy valida a sessao
+integrada e acessa a API principal no servidor, sem expor a chave ao cliente.
 
 ## Power Query
 

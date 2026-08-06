@@ -1,6 +1,6 @@
 # Central de projetos
 
-Versao atual: `1.1.0`
+Versao atual: `1.1.1`
 Publicacao: 05/08/2026
 
 ## Objetivo
@@ -41,7 +41,7 @@ da pagina atual.
 |---|---|---|
 | Clinica Pet | `https://lemeinformatica.com.br/pet/` | login central |
 | Dashboard Pet | `https://lemesolucoesemti.com.br/pet/` | SSO central |
-| Relatorios Power BI | `https://lemesolucoesemti.com.br/powerbi/` | login local |
+| Relatorios Power BI | `https://lemesolucoesemti.com.br/powerbi/` | SSO central |
 | Dados Publicos SC | `https://lemeinformatica.com.br/gov/` | publico |
 | Brasil em Dados | `https://lemesolucoesemti.com.br/gov/` | publico |
 | Investimentos | `https://lemesolucoesemti.com.br/invest/` | publico |
@@ -50,6 +50,8 @@ da pagina atual.
 
 ## Versoes
 
+- `1.1.1`: troca o login local do Power BI pelo mesmo SSO central usado no
+  Dashboard Pet.
 - `1.1.0`: inclui Power BI e Nextcloud, restaura `gov` e `invest`, corrige o
   retorno do login e amplia a verificacao do deploy.
 - `1.0.0`: primeira central publica de projetos.

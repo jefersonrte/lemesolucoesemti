@@ -10,8 +10,9 @@ header('Referrer-Policy: no-referrer');
 pet_dashboard_session_start();
 
 $code = trim((string) ($_GET['code'] ?? ''));
+$destination = ($_GET['next'] ?? '') === 'powerbi' ? 'powerbi' : 'pet';
 if (!preg_match('/^[a-f0-9]{64}$/', $code)) {
-    header('Location: ./?erro=acesso');
+    header('Location: ' . ($destination === 'powerbi' ? '../powerbi/?erro=acesso' : './?erro=acesso'));
     exit;
 }
 
@@ -20,7 +21,7 @@ $data = json_decode((string) $response['body'], true);
 if ($response['status'] !== 200 || !is_array($data) || empty($data['ok'])
     || !preg_match('/^[a-f0-9]{64}$/', (string) ($data['data']['token'] ?? ''))
     || !is_array($data['data']['usuario'] ?? null)) {
-    header('Location: ./?erro=acesso');
+    header('Location: ' . ($destination === 'powerbi' ? '../powerbi/?erro=acesso' : './?erro=acesso'));
     exit;
 }
 
@@ -31,5 +32,5 @@ $_SESSION['pet_user'] = $data['data']['usuario'];
 $_SESSION['pet_last_activity'] = time();
 $_SESSION['pet_csrf'] = bin2hex(random_bytes(32));
 
-header('Location: ./');
+header('Location: ' . ($destination === 'powerbi' ? '../powerbi/' : './'));
 exit;

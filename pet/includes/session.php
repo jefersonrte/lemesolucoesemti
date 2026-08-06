@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const PET_DASHBOARD_SESSION = 'LEME_PET_DASHBOARD';
+const PET_DASHBOARD_SESSION = 'LEME_SSO_DASHBOARD';
 const PET_DASHBOARD_IDLE_SECONDS = 1800;
 
 function pet_dashboard_headers(): void
@@ -24,7 +24,7 @@ function pet_dashboard_session_start(): void
     session_name(PET_DASHBOARD_SESSION);
     session_set_cookie_params([
         'lifetime' => 0,
-        'path' => '/pet',
+        'path' => '/',
         'domain' => '',
         'secure' => $secure,
         'httponly' => true,

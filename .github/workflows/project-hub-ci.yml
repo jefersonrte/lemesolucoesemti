@@ -54,7 +54,7 @@ jobs:
       - name: Check project hub links
         shell: bash
         run: |
-          test "$(tr -d '\r\n' < PROJECT_HUB_VERSION)" = "1.1.0"
+          test "$(tr -d '\r\n' < PROJECT_HUB_VERSION)" = "1.1.1"
           grep -q "https://lemeinformatica.com.br/pet/" index.php
           grep -q "https://lemesolucoesemti.com.br/pet/" index.php
           grep -q "https://lemesolucoesemti.com.br/powerbi/" index.php
@@ -79,7 +79,9 @@ jobs:
           test -s powerbi/index.php
           test -s powerbi/dados.php
           test -s api/alimentos.php
-          grep -q "next=powerbi" powerbi/index.php
+          grep -q "sso-start.php?next=powerbi" powerbi/index.php
+          grep -q "dataset=alimentos" frontend/js/powerbi.js
+          grep -q "LEME_SSO_DASHBOARD" pet/includes/session.php
           grep -q "ApiKeyLeme" powerbi/consulta-powerbi.m
           if grep -Eq '[a-f0-9]{48,}' powerbi/consulta-powerbi.m; then
             echo "Power BI query contains a hard-coded key."

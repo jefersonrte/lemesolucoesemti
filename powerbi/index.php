@@ -1,12 +1,17 @@
 <?php
-require_once __DIR__ . '/../auth/security.php';
+require_once __DIR__ . '/../pet/includes/session.php';
 
-apply_security_headers();
-if (!is_logged_in()) {
-    redirect('/login.php?next=powerbi');
+pet_dashboard_headers();
+$user = pet_dashboard_user();
+if ($user === null) {
+    header('Location: https://lemeinformatica.com.br/pet/sso-start.php?next=powerbi');
+    exit;
 }
-$user = require_login(false);
 $embedMode = ($_GET['embed'] ?? '') === '1';
+$configPath = __DIR__ . '/../config.php';
+if (is_file($configPath)) {
+    require_once $configPath;
+}
 $officialUrl = defined('POWERBI_EMBED_URL') ? trim((string) POWERBI_EMBED_URL) : '';
 $hasOfficialReport = preg_match('~^https://app\.powerbi\.com/(view|reportEmbed)~i', $officialUrl) === 1;
 ?>

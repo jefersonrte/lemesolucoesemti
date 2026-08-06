@@ -27,7 +27,7 @@ async function getJson(path) {
     });
 
     if (response.status === 401) {
-        window.top.location.href = '../login.php?expirou=1';
+        window.top.location.href = 'https://lemeinformatica.com.br/pet/sso-start.php?next=powerbi';
         throw new Error('Sessao expirada.');
     }
 
@@ -202,9 +202,9 @@ async function loadReport() {
 
     try {
         const [summary, animals, foods] = await Promise.all([
-            getJson('../api/dashboard.php'),
-            getJson('../api/animais.php?limit=5000'),
-            getJson('../api/alimentos.php?limit=5000')
+            getJson('dados.php?dataset=dashboard'),
+            getJson('dados.php?dataset=animais&limit=5000'),
+            getJson('dados.php?dataset=alimentos&limit=5000')
         ]);
 
         state.summary = summary.data || {};
