@@ -1,4 +1,6 @@
 /config.php
+/nextcloud/
+/nextcloud-data/
 /gov/private/config.php
 /invest/carteira.json
 /invest/cache_*.json

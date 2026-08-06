@@ -1,7 +1,7 @@
 # Central de projetos
 
-Versao atual: `1.1.2`
-Publicacao: 05/08/2026
+Versao atual: `1.2.0`
+Publicacao: 06/08/2026
 
 ## Objetivo
 
@@ -45,11 +45,13 @@ da pagina atual.
 | Dados Publicos SC | `https://lemeinformatica.com.br/gov/` | publico |
 | Brasil em Dados | `https://lemesolucoesemti.com.br/gov/` | publico |
 | Investimentos | `https://lemesolucoesemti.com.br/invest/` | publico |
-| Nuvem / Nextcloud | `https://lemesolucoesemti.com.br/cloud/` | pagina de recuperacao |
+| Nuvem / Nextcloud | `https://lemesolucoesemti.com.br/cloud/` | redireciona para `/nextcloud/` |
 | Administracao e API | `https://lemeinformatica.com.br/login.php` | login central |
 
 ## Versoes
 
+- `1.2.0`: instala o Nextcloud 34.0.2 fora das pastas controladas pelo Git,
+  preserva os dados fora de `public_html` e ativa a entrada `/cloud/`.
 - `1.1.2`: acompanha a compatibilidade de montagem do modulo Pet no dominio
   principal, sem alterar as URLs do catalogo.
 - `1.1.1`: troca o login local do Power BI pelo mesmo SSO central usado no

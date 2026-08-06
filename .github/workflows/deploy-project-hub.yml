@@ -139,8 +139,11 @@ jobs:
               grep -q "Todos os projetos Leme" page.html && \
               grep -q "Nuvem / Nextcloud" page.html && \
               curl --silent --show-error --fail --max-time 30 \
-                https://lemesolucoesemti.com.br/cloud/ -o cloud.html && \
-              grep -q "Ambiente em recuperacao" cloud.html && \
+                https://lemesolucoesemti.com.br/nextcloud/status.php -o nextcloud-status.json && \
+              grep -q '"installed":true' nextcloud-status.json && \
+              curl --silent --show-error --head --max-time 30 \
+                https://lemesolucoesemti.com.br/cloud/ -o cloud.headers && \
+              grep -qi "location: /nextcloud/" cloud.headers && \
               curl --silent --show-error --fail --max-time 30 \
                 https://lemesolucoesemti.com.br/gov/ -o gov.html && \
               grep -q "Brasil em dados" gov.html && \

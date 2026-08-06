@@ -54,7 +54,7 @@ jobs:
       - name: Check project hub links
         shell: bash
         run: |
-          test "$(tr -d '\r\n' < PROJECT_HUB_VERSION)" = "1.1.2"
+          test "$(tr -d '\r\n' < PROJECT_HUB_VERSION)" = "1.2.0"
           grep -q "https://lemeinformatica.com.br/pet/" index.php
           grep -q "https://lemesolucoesemti.com.br/pet/" index.php
           grep -q "https://lemesolucoesemti.com.br/powerbi/" index.php
@@ -69,6 +69,7 @@ jobs:
         run: |
           test -s cloud/index.php
           test -s cloud/styles.css
+          grep -q "Location: /nextcloud/" cloud/index.php
           test -s gov/index.php
           test -s gov/licitacoes.php
           test -s gov/private/runtime.php
