@@ -1,6 +1,6 @@
 # Central de projetos
 
-Versao atual: `1.2.0`
+Versao atual: `1.2.1`
 Publicacao: 06/08/2026
 
 ## Objetivo
@@ -50,6 +50,8 @@ da pagina atual.
 
 ## Versoes
 
+- `1.2.1`: pre-autoriza o subdominio historico no Nextcloud e aplica idioma,
+  localidade e regiao telefonica do Brasil.
 - `1.2.0`: instala o Nextcloud 34.0.2 fora das pastas controladas pelo Git,
   preserva os dados fora de `public_html` e ativa a entrada `/cloud/`.
 - `1.1.2`: acompanha a compatibilidade de montagem do modulo Pet no dominio

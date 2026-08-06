@@ -15,6 +15,6 @@ os arquivos dos usuarios nunca devem ser adicionados ao repositorio.
 ## Endereco historico
 
 `https://nuvem.lemesolucoesemti.com.br/` ainda possui DNS, mas sua raiz de
-documentos nao esta disponivel pela conta FTP atual. Depois de apontar o
-subdominio para a instalacao atual, ele deve ser adicionado a `trusted_domains`
-e validado antes de se tornar o endereco principal.
+documentos nao esta disponivel pela conta FTP atual. O host ja esta cadastrado
+em `trusted_domains`; depois de apontar o subdominio para a instalacao atual no
+hPanel, basta validar o acesso antes de torna-lo o endereco principal.
