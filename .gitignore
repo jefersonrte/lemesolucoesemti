@@ -1,4 +1,7 @@
 /config.php
+/gov/private/config.php
+/invest/carteira.json
+/invest/cache_*.json
 *.log
 .DS_Store
 Thumbs.db

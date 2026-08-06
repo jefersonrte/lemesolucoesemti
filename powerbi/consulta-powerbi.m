@@ -1,8 +1,13 @@
 let
+    ApiKey = Text.Trim(Text.From(ApiKeyLeme)),
     Fonte = Json.Document(
         Web.Contents(
-            "https://lemeinformatica.com.br/estacio/final/api/powerbi.php",
-            [Headers = [#"X-API-KEY" = "1b928d1b3a009d037649cc5a87d2bd4042ad4bf330970a8b7815dce03ee08885"]]
+            "https://lemeinformatica.com.br",
+            [
+                RelativePath = "powerbi.php",
+                Headers = [Accept = "application/json", #"X-API-KEY" = ApiKey],
+                Timeout = #duration(0, 0, 2, 0)
+            ]
         )
     ),
     Dados = Fonte[data],

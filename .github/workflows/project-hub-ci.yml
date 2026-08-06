@@ -35,6 +35,7 @@ jobs:
       - name: Check JavaScript
         run: |
           node --check frontend/js/home.js
+          node --check frontend/js/powerbi.js
           node --check pet/frontend/js/app.js
 
       - name: Check Pet dashboard contracts
@@ -53,12 +54,37 @@ jobs:
       - name: Check project hub links
         shell: bash
         run: |
+          test "$(tr -d '\r\n' < PROJECT_HUB_VERSION)" = "1.1.0"
           grep -q "https://lemeinformatica.com.br/pet/" index.php
           grep -q "https://lemesolucoesemti.com.br/pet/" index.php
+          grep -q "https://lemesolucoesemti.com.br/powerbi/" index.php
           grep -q "https://lemeinformatica.com.br/gov/" index.php
           grep -q "https://lemesolucoesemti.com.br/gov/" index.php
           grep -q "https://lemesolucoesemti.com.br/invest/" index.php
+          grep -q "https://lemesolucoesemti.com.br/cloud/" index.php
           grep -q "https://lemeinformatica.com.br/login.php" index.php
+
+      - name: Check restored project contracts
+        shell: bash
+        run: |
+          test -s cloud/index.php
+          test -s cloud/styles.css
+          test -s gov/index.php
+          test -s gov/licitacoes.php
+          test -s gov/private/runtime.php
+          test ! -e gov/private/config.php
+          test -s invest/index.php
+          test -s invest/painel.php
+          test -s invest/.htaccess
+          test -s powerbi/index.php
+          test -s powerbi/dados.php
+          test -s api/alimentos.php
+          grep -q "next=powerbi" powerbi/index.php
+          grep -q "ApiKeyLeme" powerbi/consulta-powerbi.m
+          if grep -Eq '[a-f0-9]{48,}' powerbi/consulta-powerbi.m; then
+            echo "Power BI query contains a hard-coded key."
+            exit 1
+          fi
 
       - name: Check assets
         shell: bash
@@ -66,3 +92,17 @@ jobs:
           test -s frontend/css/home.css
           test -s frontend/js/home.js
           test -s frontend/assets/matrix-city-v2.webp
+          test -s frontend/css/powerbi.css
+          test -s frontend/js/powerbi.js
+
+      - name: Reject runtime secrets
+        shell: bash
+        run: |
+          if git ls-files | grep -E '(^|/)(config\.php|database\.runtime\.php|\.env)$'; then
+            echo "Runtime secret file is tracked."
+            exit 1
+          fi
+          if git grep -nE '[A-Fa-f0-9]{48,}'; then
+            echo "Possible long-form secret is tracked."
+            exit 1
+          fi

@@ -30,7 +30,7 @@ Senhas iniciais nao ficam em arquivos, commits ou documentacao publica.
 
 ## Instalar no banco local
 
-No phpMyAdmin do banco `u216029204_api`, execute:
+No phpMyAdmin do banco local do dashboard, execute:
 
 ```sql
 sql/create_auth_tables.sql
@@ -48,8 +48,8 @@ Copie `config.example.php` para `config.php` somente no servidor e edite as cred
 
 ```php
 const LOCAL_DB_HOST = 'localhost';
-const LOCAL_DB_NAME = 'u216029204_api';
-const LOCAL_DB_USER = 'u216029204_api';
+const LOCAL_DB_NAME = 'NOME_DO_BANCO_LOCAL';
+const LOCAL_DB_USER = 'USUARIO_DO_BANCO_LOCAL';
 const LOCAL_DB_PASS = 'SENHA_DO_BANCO_LOCAL_AQUI';
 ```
 

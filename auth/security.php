@@ -42,7 +42,7 @@ function start_secure_session(): void
 
     if (isset($_SESSION['last_activity']) && ($now - (int) $_SESSION['last_activity']) > SESSION_IDLE_LIMIT_SECONDS) {
         logout_user();
-        redirect('login.php?expirou=1');
+        redirect('/login.php?expirou=1');
     }
 
     $_SESSION['last_activity'] = $now;
@@ -120,7 +120,7 @@ function require_login(bool $json = false): array
         json_error('Usuario nao autenticado.', 401);
     }
 
-    redirect('login.php');
+    redirect('/login.php');
 }
 
 function require_role(array $allowedRoles, bool $json = false): array

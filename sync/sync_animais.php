@@ -1,5 +1,5 @@
 <?php
-// Sincronizacao opcional para gravar uma copia local dos dados em u216029204_api.
+// Sincronizacao opcional para gravar uma copia no banco local do dashboard.
 // Por seguranca, exige login de administrador e metodo POST com CSRF.
 
 require_once __DIR__ . '/../auth/security.php';

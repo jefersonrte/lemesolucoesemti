@@ -7,8 +7,10 @@ TI.
 
 - central de projetos: `https://lemesolucoesemti.com.br/`;
 - dashboard Pet: `https://lemesolucoesemti.com.br/pet/`;
+- relatorios Power BI: `https://lemesolucoesemti.com.br/powerbi/`;
 - Brasil em Dados: `https://lemesolucoesemti.com.br/gov/`;
-- investimentos: `https://lemesolucoesemti.com.br/invest/`.
+- investimentos: `https://lemesolucoesemti.com.br/invest/`;
+- entrada da Nuvem/Nextcloud: `https://lemesolucoesemti.com.br/cloud/`.
 
 O menu tambem fornece acesso aos projetos operacionais hospedados em
 `lemeinformatica.com.br`.
@@ -18,6 +20,12 @@ O menu tambem fornece acesso aos projetos operacionais hospedados em
 O catalogo da pagina inicial fica no array `$projects` de `index.php`. Estilos,
 comportamento e imagem ficam separados em `frontend`. Consulte
 [`docs/PROJECT_HUB.md`](docs/PROJECT_HUB.md) antes de adicionar uma nova rota.
+A versao atual do catalogo fica em `PROJECT_HUB_VERSION`.
+
+O subdominio historico `nuvem.lemesolucoesemti.com.br` esta reservado, mas a
+instalacao anterior do Nextcloud precisa ser recuperada a partir da hospedagem
+ou de backup. A pagina `cloud/` evita um atalho quebrado enquanto essa etapa nao
+for concluida.
 
 ## Seguranca
 

@@ -1,12 +1,12 @@
 <?php
 // Copie este arquivo para config.php somente no servidor.
 
-const API_BASE_URL = 'https://lemeinformatica.com.br/estacio/final/api';
+const API_BASE_URL = 'https://lemeinformatica.com.br';
 const API_KEY = 'COLOQUE_A_CHAVE_DA_API_AQUI';
 
 const LOCAL_DB_HOST = 'localhost';
-const LOCAL_DB_NAME = 'u216029204_api';
-const LOCAL_DB_USER = 'u216029204_api';
+const LOCAL_DB_NAME = 'NOME_DO_BANCO_LOCAL';
+const LOCAL_DB_USER = 'USUARIO_DO_BANCO_LOCAL';
 const LOCAL_DB_PASS = 'COLOQUE_A_SENHA_DO_BANCO_LOCAL_AQUI';
 
 const APP_ENV = 'production';

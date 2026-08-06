@@ -1,6 +1,6 @@
 # Central de projetos
 
-Versao inicial: `1.0.0`  
+Versao atual: `1.1.0`
 Publicacao: 05/08/2026
 
 ## Objetivo
@@ -34,6 +34,25 @@ Inclua um item no array `$projects` de `index.php` com os campos:
 Os valores de `accent` disponiveis sao `mint`, `cyan`, `yellow`, `coral`,
 `violet` e `blue`. Use `local` para identificar projetos hospedados no dominio
 da pagina atual.
+
+## Rotas catalogadas
+
+| Projeto | Destino | Estado esperado |
+|---|---|---|
+| Clinica Pet | `https://lemeinformatica.com.br/pet/` | login central |
+| Dashboard Pet | `https://lemesolucoesemti.com.br/pet/` | SSO central |
+| Relatorios Power BI | `https://lemesolucoesemti.com.br/powerbi/` | login local |
+| Dados Publicos SC | `https://lemeinformatica.com.br/gov/` | publico |
+| Brasil em Dados | `https://lemesolucoesemti.com.br/gov/` | publico |
+| Investimentos | `https://lemesolucoesemti.com.br/invest/` | publico |
+| Nuvem / Nextcloud | `https://lemesolucoesemti.com.br/cloud/` | pagina de recuperacao |
+| Administracao e API | `https://lemeinformatica.com.br/login.php` | login central |
+
+## Versoes
+
+- `1.1.0`: inclui Power BI e Nextcloud, restaura `gov` e `invest`, corrige o
+  retorno do login e amplia a verificacao do deploy.
+- `1.0.0`: primeira central publica de projetos.
 
 ## Seguranca
 

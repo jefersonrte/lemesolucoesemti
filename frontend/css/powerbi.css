@@ -1,0 +1,439 @@
+:root {
+    --ink: #172536;
+    --muted: #637083;
+    --line: #dce2e9;
+    --surface: #ffffff;
+    --canvas: #f3f5f7;
+    --blue: #2457a6;
+    --teal: #087f78;
+    --green: #2d7a4d;
+    --amber: #b76827;
+    --coral: #b94a48;
+    --danger: #9f2d2d;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background: var(--canvas);
+}
+
+body {
+    margin: 0;
+    color: var(--ink);
+    background: var(--canvas);
+    font: 14px/1.45 "Segoe UI", Arial, sans-serif;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button,
+a,
+input,
+select {
+    border-radius: 6px;
+}
+
+.bi-topbar {
+    min-height: 78px;
+    padding: 14px clamp(16px, 4vw, 48px);
+    background: #172536;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.bi-topbar h1,
+.bi-topbar p {
+    margin: 0;
+}
+
+.bi-topbar h1 {
+    font-size: 22px;
+    letter-spacing: 0;
+}
+
+.bi-eyebrow {
+    color: #a9c5de;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.bi-top-actions,
+.bi-toolbar,
+.bi-view-heading,
+.bi-panel-heading,
+.bi-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.bi-user {
+    color: #d7e2ec;
+}
+
+.bi-report {
+    width: min(1480px, 100%);
+    margin: 0 auto;
+    padding: 18px clamp(12px, 3vw, 36px) 36px;
+}
+
+.bi-toolbar {
+    min-height: 52px;
+    border-bottom: 1px solid var(--line);
+}
+
+.bi-toolbar strong,
+.bi-toolbar span {
+    display: block;
+}
+
+.bi-toolbar span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.bi-button {
+    border: 1px solid var(--blue);
+    background: var(--blue);
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 8px 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.bi-button:hover {
+    filter: brightness(.94);
+}
+
+.bi-button:disabled {
+    cursor: not-allowed;
+    opacity: .45;
+}
+
+.bi-button.secondary {
+    border-color: #aeb9c5;
+    background: #fff;
+    color: var(--ink);
+}
+
+.bi-topbar .bi-button.secondary {
+    border-color: #8194a7;
+    background: transparent;
+    color: #fff;
+}
+
+.bi-tabs {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    overflow-x: auto;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 18px;
+}
+
+.bi-tab {
+    flex: 0 0 auto;
+    min-height: 44px;
+    padding: 10px 16px;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.bi-tab.active {
+    border-bottom-color: var(--blue);
+    color: var(--blue);
+}
+
+.bi-kpis {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.bi-kpi {
+    min-height: 104px;
+    padding: 15px 16px;
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--blue);
+    border-radius: 6px;
+    background: var(--surface);
+}
+
+.bi-kpi span,
+.bi-kpi strong {
+    display: block;
+}
+
+.bi-kpi span {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.bi-kpi strong {
+    margin-top: 9px;
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1;
+}
+
+.accent-teal { border-top-color: var(--teal); }
+.accent-green { border-top-color: var(--green); }
+.accent-amber { border-top-color: var(--amber); }
+.accent-coral { border-top-color: var(--coral); }
+
+.bi-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.bi-panel,
+.bi-view[data-view-panel="animals"],
+.bi-view[data-view-panel="foods"] {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-radius: 6px;
+}
+
+.bi-panel {
+    min-height: 290px;
+    padding: 16px;
+}
+
+.bi-panel.wide {
+    grid-column: span 1;
+}
+
+.bi-panel-heading {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #edf0f3;
+}
+
+.bi-panel-heading h2,
+.bi-view-heading h2 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.bi-panel-heading span,
+.bi-view-heading p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.bi-chart {
+    display: grid;
+    gap: 11px;
+    margin-top: 14px;
+}
+
+.bi-chart-row {
+    display: grid;
+    grid-template-columns: minmax(90px, 140px) minmax(80px, 1fr) 70px;
+    gap: 10px;
+    align-items: center;
+}
+
+.bi-chart-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.bi-chart-value {
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    font-weight: 700;
+}
+
+.bi-progress {
+    appearance: none;
+    border: 0;
+    width: 100%;
+    height: 14px;
+    overflow: hidden;
+    border-radius: 3px;
+    background: #e9edf1;
+}
+
+.bi-progress::-webkit-progress-bar {
+    background: #e9edf1;
+}
+
+.bi-progress::-webkit-progress-value {
+    background: var(--teal);
+}
+
+.bi-progress::-moz-progress-bar {
+    background: var(--teal);
+}
+
+.bi-chart.compact .bi-progress::-webkit-progress-value,
+#pbiChartRaca .bi-progress::-webkit-progress-value {
+    background: var(--blue);
+}
+
+.bi-view[data-view-panel="animals"],
+.bi-view[data-view-panel="foods"] {
+    padding: 16px;
+}
+
+.bi-view-heading {
+    margin-bottom: 14px;
+}
+
+.bi-filters {
+    display: grid;
+    grid-template-columns: minmax(190px, 280px) minmax(160px, 220px);
+    gap: 10px;
+}
+
+.bi-filters input,
+.bi-filters select {
+    min-height: 40px;
+    width: 100%;
+    border: 1px solid #b9c3ce;
+    background: #fff;
+    padding: 8px 10px;
+    color: var(--ink);
+}
+
+.bi-filters input:focus,
+.bi-filters select:focus {
+    outline: 3px solid rgba(36, 87, 166, .14);
+    border-color: var(--blue);
+}
+
+.bi-table-wrap {
+    overflow: auto;
+    border: 1px solid var(--line);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th,
+td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e8ecf0;
+    white-space: nowrap;
+}
+
+th {
+    position: sticky;
+    top: 0;
+    background: #edf1f4;
+    color: #344456;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+tbody tr:hover {
+    background: #f7f9fa;
+}
+
+.bi-pagination {
+    margin-top: 12px;
+}
+
+.bi-empty,
+.bi-error {
+    color: var(--muted);
+    padding: 20px 0;
+    text-align: center;
+}
+
+.bi-error {
+    color: var(--danger);
+}
+
+.official-powerbi-frame {
+    width: 100%;
+    min-height: 760px;
+    border: 1px solid var(--line);
+    background: #fff;
+}
+
+.embed-mode .bi-topbar {
+    display: none;
+}
+
+.embed-mode .bi-report {
+    padding: 12px;
+}
+
+@media (max-width: 980px) {
+    .bi-kpis {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .bi-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 680px) {
+    .bi-topbar,
+    .bi-toolbar,
+    .bi-view-heading {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .bi-top-actions,
+    .bi-filters {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .bi-kpis {
+        grid-template-columns: 1fr;
+    }
+
+    .bi-chart-row {
+        grid-template-columns: minmax(80px, 110px) minmax(70px, 1fr) 64px;
+    }
+
+    .bi-user {
+        display: none;
+    }
+}
+
+@media (max-width: 420px) {
+    .bi-tabs {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+        overflow-x: visible;
+    }
+
+    .bi-tab {
+        min-width: 0;
+        padding-inline: 6px;
+    }
+}

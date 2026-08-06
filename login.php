@@ -4,9 +4,15 @@ require_once __DIR__ . '/auth/security.php';
 apply_security_headers();
 start_secure_session();
 
-$next = ($_GET['next'] ?? '') === 'pet' ? 'pet' : '';
+$allowedDestinations = [
+    'pet' => '/pet/',
+    'powerbi' => '/powerbi/',
+];
+$next = array_key_exists((string) ($_GET['next'] ?? ''), $allowedDestinations)
+    ? (string) $_GET['next']
+    : '';
 if (is_logged_in()) {
-    redirect($next === 'pet' ? 'pet/' : 'index.php');
+    redirect($allowedDestinations[$next] ?? '/');
 }
 
 $erro = $_GET['erro'] ?? '';
@@ -60,7 +66,7 @@ if ($erro === '1') {
             <button class="btn full" type="submit">Entrar no sistema</button>
         </form>
 
-        <p class="login-help">Primeiro acesso padrao: <strong>admin@lemesolucoesemti.com.br</strong>. Altere a senha apos instalar.</p>
+        <p class="login-help">Use as credenciais fornecidas pelo administrador do sistema.</p>
     </main>
 </body>
 </html>

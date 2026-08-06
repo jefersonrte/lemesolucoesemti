@@ -4,9 +4,15 @@ require_once __DIR__ . '/auth/login-service.php';
 apply_security_headers();
 start_secure_session();
 
-$nextIsPet = ($_POST['next'] ?? '') === 'pet';
-$next = $nextIsPet ? 'pet/' : 'index.php';
-$loginSuffix = $nextIsPet ? '&next=pet' : '';
+$allowedDestinations = [
+    'pet' => '/pet/',
+    'powerbi' => '/powerbi/',
+];
+$nextKey = array_key_exists((string) ($_POST['next'] ?? ''), $allowedDestinations)
+    ? (string) $_POST['next']
+    : '';
+$next = $allowedDestinations[$nextKey] ?? '/';
+$loginSuffix = $nextKey !== '' ? '&next=' . rawurlencode($nextKey) : '';
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     redirect('login.php');

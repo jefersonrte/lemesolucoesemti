@@ -9,10 +9,19 @@ on:
       - frontend/css/home.css
       - frontend/js/home.js
       - frontend/assets/matrix-city-v2.webp
+      - frontend/css/powerbi.css
+      - frontend/js/powerbi.js
       - api-client.php
+      - api/**
+      - auth/**
       - login.php
       - login-processa.php
+      - cloud/**
+      - gov/**
+      - invest/**
+      - powerbi/**
       - pet/**
+      - PROJECT_HUB_VERSION
   workflow_dispatch:
 
 permissions:
@@ -83,17 +92,31 @@ jobs:
           mkdir -p frontend/css
           mkdir -p frontend/js
           mkdir -p frontend/assets
+          mkdir -p cloud
+          mkdir -p gov/private
+          mkdir -p invest
+          mkdir -p powerbi
+          mkdir -p api
           mkdir -p pet/api
           mkdir -p pet/frontend/css
           mkdir -p pet/frontend/js
           mkdir -p pet/includes
           put -O / index.php
           put -O / api-client.php
+          mirror --reverse --transfer-all --overwrite --verbose --no-perms --no-umask api /api
           put -O / login.php
           put -O / login-processa.php
+          put -O / PROJECT_HUB_VERSION
+          put -O /auth auth/security.php
           put -O /frontend/css frontend/css/home.css
+          put -O /frontend/css frontend/css/powerbi.css
           put -O /frontend/js frontend/js/home.js
+          put -O /frontend/js frontend/js/powerbi.js
           put -O /frontend/assets frontend/assets/matrix-city-v2.webp
+          mirror --reverse --transfer-all --overwrite --verbose --no-perms --no-umask cloud /cloud
+          mirror --reverse --transfer-all --overwrite --verbose --no-perms --no-umask gov /gov
+          mirror --reverse --transfer-all --overwrite --verbose --no-perms --no-umask invest /invest
+          mirror --reverse --transfer-all --overwrite --verbose --no-perms --no-umask powerbi /powerbi
           put -O /pet pet/index.php
           put -O /pet pet/callback.php
           put -O /pet pet/logout.php
@@ -114,6 +137,19 @@ jobs:
             if curl --silent --show-error --fail --max-time 30 \
               https://lemesolucoesemti.com.br/ -o page.html && \
               grep -q "Todos os projetos Leme" page.html && \
+              grep -q "Nuvem / Nextcloud" page.html && \
+              curl --silent --show-error --fail --max-time 30 \
+                https://lemesolucoesemti.com.br/cloud/ -o cloud.html && \
+              grep -q "Ambiente em recuperacao" cloud.html && \
+              curl --silent --show-error --fail --max-time 30 \
+                https://lemesolucoesemti.com.br/gov/ -o gov.html && \
+              grep -q "Brasil em dados" gov.html && \
+              curl --silent --show-error --head --max-time 30 \
+                https://lemesolucoesemti.com.br/invest/ -o invest.headers && \
+              grep -qi "location: painel.php" invest.headers && \
+              curl --silent --show-error --head --max-time 30 \
+                https://lemesolucoesemti.com.br/powerbi/ -o powerbi.headers && \
+              grep -qi "location: /login.php?next=powerbi" powerbi.headers && \
               curl --silent --show-error --fail --max-time 30 \
                 https://lemesolucoesemti.com.br/pet/frontend/css/app.css -o pet.css && \
               grep -q -- "--green: #1f765d" pet.css && \
