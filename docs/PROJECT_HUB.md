@@ -1,6 +1,6 @@
 # Central de projetos
 
-Versao atual: `1.1.1`
+Versao atual: `1.1.2`
 Publicacao: 05/08/2026
 
 ## Objetivo
@@ -50,6 +50,8 @@ da pagina atual.
 
 ## Versoes
 
+- `1.1.2`: acompanha a compatibilidade de montagem do modulo Pet no dominio
+  principal, sem alterar as URLs do catalogo.
 - `1.1.1`: troca o login local do Power BI pelo mesmo SSO central usado no
   Dashboard Pet.
 - `1.1.0`: inclui Power BI e Nextcloud, restaura `gov` e `invest`, corrige o
