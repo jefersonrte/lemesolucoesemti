@@ -12,6 +12,7 @@ on:
       - frontend/css/powerbi.css
       - frontend/js/powerbi.js
       - api-client.php
+      - app.js
       - api/**
       - auth/**
       - login.php
@@ -103,11 +104,14 @@ jobs:
           mkdir -p pet/includes
           put -O / index.php
           put -O / api-client.php
+          put -O / app.js
           mirror --reverse --transfer-all --overwrite --verbose --no-perms --no-umask api /api
           put -O / login.php
           put -O / login-processa.php
           put -O / PROJECT_HUB_VERSION
           put -O /auth auth/security.php
+          put -O /auth auth/nextcloud-client.php
+          put -O /auth auth/.htaccess
           put -O /frontend/css frontend/css/home.css
           put -O /frontend/css frontend/css/powerbi.css
           put -O /frontend/js frontend/js/home.js
@@ -159,6 +163,10 @@ jobs:
               curl --silent --show-error --head --max-time 30 \
                 https://lemesolucoesemti.com.br/pet/ -o pet.headers && \
               grep -qi "location: https://lemeinformatica.com.br/pet/sso-start.php" pet.headers; then
+              sync_status="$(curl --silent --show-error --output /dev/null --write-out '%{http_code}' --max-time 30 \
+                -X POST -H 'Content-Type: application/json' -d '{}' \
+                https://lemesolucoesemti.com.br/api/usuarios-sync.php)"
+              test "$sync_status" = "401"
               exit 0
             fi
             sleep 5

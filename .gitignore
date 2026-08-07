@@ -1,4 +1,5 @@
 /config.php
+/auth/nextcloud-runtime.php
 /nextcloud/
 /nextcloud-data/
 /gov/private/config.php

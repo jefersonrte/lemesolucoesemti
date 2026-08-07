@@ -1,6 +1,6 @@
 # Central de projetos
 
-Versao atual: `1.2.1`
+Versao atual: `1.3.0`
 Publicacao: 06/08/2026
 
 ## Objetivo
@@ -50,6 +50,8 @@ da pagina atual.
 
 ## Versoes
 
+- `1.3.0`: encaminha o gerenciamento de usuarios para a API central e replica
+  cada conta no dashboard local e no Nextcloud.
 - `1.2.1`: pre-autoriza o subdominio historico no Nextcloud e aplica idioma,
   localidade e regiao telefonica do Brasil.
 - `1.2.0`: instala o Nextcloud 34.0.2 fora das pastas controladas pelo Git,

@@ -58,7 +58,7 @@ async function api(path, options = {}) {
     const data = await response.json().catch(() => ({ ok: false, erro: 'Resposta invalida da API.' }));
 
     if (!response.ok || data.ok === false) {
-        throw new Error(data.erro || 'Erro ao comunicar com a API.');
+        throw new Error([data.erro, data.detalhe].filter(Boolean).join(' ') || 'Erro ao comunicar com a API.');
     }
 
     return data;
@@ -309,7 +309,7 @@ async function alterarStatusUsuario(id, ativo) {
     usuarioStatus.className = '';
 
     try {
-        await api(`api/usuarios.php?id=${encodeURIComponent(id)}`, {
+        const response = await api(`api/usuarios.php?id=${encodeURIComponent(id)}`, {
             method: 'PUT',
             body: JSON.stringify({
                 ...usuarioPayloadBase(usuario),
@@ -317,7 +317,7 @@ async function alterarStatusUsuario(id, ativo) {
             })
         });
         await carregarUsuarios();
-        usuarioStatus.textContent = ativo ? 'Usuario ativado.' : 'Usuario desativado.';
+        usuarioStatus.textContent = response.mensagem || (ativo ? 'Usuario ativado.' : 'Usuario desativado.');
         usuarioStatus.className = 'message-ok';
     } catch (error) {
         usuarioStatus.textContent = error.message;
@@ -382,7 +382,7 @@ if (formAnimal && appUser.canWrite) {
         formStatus.className = '';
 
         try {
-            await api(url, {
+            const response = await api(url, {
                 method,
                 body: JSON.stringify(payload)
             });
@@ -438,7 +438,7 @@ if (formUsuario && appUser.canManageUsers) {
 
             limparFormularioUsuario();
             await carregarUsuarios();
-            usuarioStatus.textContent = id ? 'Usuario atualizado.' : 'Usuario criado.';
+            usuarioStatus.textContent = response.mensagem || (id ? 'Usuario atualizado.' : 'Usuario criado.');
             usuarioStatus.className = 'message-ok';
         } catch (error) {
             usuarioStatus.textContent = error.message;
