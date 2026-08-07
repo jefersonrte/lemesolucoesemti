@@ -141,6 +141,7 @@ jobs:
             if curl --silent --show-error --fail --max-time 30 \
               https://lemesolucoesemti.com.br/ -o page.html && \
               grep -q "Todos os projetos Leme" page.html && \
+              grep -q "https://lemeinformatica.com.br/pet/login.php" page.html && \
               grep -q "Nuvem / Nextcloud" page.html && \
               curl --silent --show-error --fail --max-time 30 \
                 https://lemesolucoesemti.com.br/nextcloud/status.php -o nextcloud-status.json && \

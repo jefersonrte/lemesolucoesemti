@@ -11,7 +11,7 @@ if (!in_array($method, ['GET', 'POST', 'PUT', 'DELETE'], true)) {
     json_error('Metodo nao permitido.', 405);
 }
 
-$endpoint = 'usuarios.php';
+$endpoint = 'https://lemeinformatica.com.br/pet/usuarios.php';
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 if ($id) {
     $endpoint .= '?id=' . (int) $id;

@@ -46,7 +46,7 @@ da pagina atual.
 | Brasil em Dados | `https://lemesolucoesemti.com.br/gov/` | publico |
 | Investimentos | `https://lemesolucoesemti.com.br/invest/` | publico |
 | Nuvem / Nextcloud | `https://lemesolucoesemti.com.br/cloud/` | redireciona para `/nextcloud/` |
-| Administracao e API | `https://lemeinformatica.com.br/login.php` | login central |
+| Administracao e API | `https://lemeinformatica.com.br/pet/login.php` | login central |
 
 ## Versoes
 

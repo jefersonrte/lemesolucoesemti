@@ -5,7 +5,8 @@ Versao: `1.3.0`
 ## Responsabilidades deste dominio
 
 O endpoint publico para a tela administrativa continua sendo
-`api/usuarios.php`, mas ele encaminha as operacoes para a API central. A chamada
+`api/usuarios.php`, mas ele encaminha as operacoes para a API central publicada
+pela Hostinger em `https://lemeinformatica.com.br/pet/usuarios.php`. A chamada
 de retorno autenticada chega em `api/usuarios-sync.php`, que mantem a conta local
 e a conta do Nextcloud sincronizadas.
 
