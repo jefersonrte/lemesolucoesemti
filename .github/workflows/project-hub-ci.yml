@@ -87,6 +87,7 @@ jobs:
           grep -q "main_api_request" api/usuarios.php
           grep -q "OCS-APIRequest: true" auth/nextcloud-client.php
           grep -Fq 'in_array($e->ocsStatus, [101, 404, 998], true)' auth/nextcloud-client.php
+          grep -Fq "if (\$password !== '' && !\$created)" auth/nextcloud-client.php
           grep -q "sso-start.php?next=powerbi" powerbi/index.php
           grep -q "dataset=alimentos" frontend/js/powerbi.js
           grep -q "LEME_SSO_DASHBOARD" pet/includes/session.php

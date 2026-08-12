@@ -142,7 +142,7 @@ function nextcloud_upsert_user(
     nextcloud_set_user_value($userId, 'displayname', $displayName);
     nextcloud_set_user_value($userId, 'email', $email);
 
-    if ($password !== '') {
+    if ($password !== '' && !$created) {
         nextcloud_set_user_value($userId, 'password', $password);
     }
 
