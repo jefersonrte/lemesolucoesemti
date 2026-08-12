@@ -150,7 +150,7 @@ jobs:
                 https://lemesolucoesemti.com.br/cloud/ -o cloud.headers && \
               grep -qi "location: /nextcloud/" cloud.headers && \
               curl --silent --show-error --fail --max-time 30 \
-                https://lemesolucoesemti.com.br/gov/ -o gov.html && \
+                https://lemesolucoesemti.com.br/gov/licitacoes.php -o gov.html && \
               grep -q "Licitações com foco em" gov.html && \
               curl --silent --show-error --head --max-time 30 \
                 https://lemesolucoesemti.com.br/invest/ -o invest.headers && \
