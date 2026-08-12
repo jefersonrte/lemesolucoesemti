@@ -139,14 +139,18 @@ function nextcloud_upsert_user(
         $created = true;
     }
 
-    nextcloud_set_user_value($userId, 'displayname', $displayName);
-    nextcloud_set_user_value($userId, 'email', $email);
+    if (!$created) {
+        nextcloud_set_user_value($userId, 'displayname', $displayName);
+        nextcloud_set_user_value($userId, 'email', $email);
 
-    if ($password !== '' && !$created) {
-        nextcloud_set_user_value($userId, 'password', $password);
+        if ($password !== '') {
+            nextcloud_set_user_value($userId, 'password', $password);
+        }
+
+        nextcloud_set_user_enabled($userId, $active);
+    } elseif (!$active) {
+        nextcloud_set_user_enabled($userId, false);
     }
-
-    nextcloud_set_user_enabled($userId, $active);
     return $created;
 }
 
