@@ -90,7 +90,7 @@ function nextcloud_user_exists(string $userId): bool
         nextcloud_ocs_request('GET', '/ocs/v1.php/cloud/users/' . rawurlencode($userId));
         return true;
     } catch (NextcloudProvisioningException $e) {
-        if ($e->httpStatus === 404 || in_array($e->ocsStatus, [101, 998], true)) {
+        if ($e->httpStatus === 404 || in_array($e->ocsStatus, [101, 404, 998], true)) {
             return false;
         }
         throw $e;
