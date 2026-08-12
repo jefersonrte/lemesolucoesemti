@@ -8,6 +8,6 @@ if (!defined('API_KEY') || trim((string) API_KEY) === '') {
 }
 
 return [
-    'api_url' => 'https://lemeinformatica.com.br/gov/api/deputados.php',
+    'api_url' => 'https://lemeinformatica.com.br/gov/api/licitacoes.php',
     'api_key' => (string) API_KEY,
 ];

@@ -151,7 +151,7 @@ jobs:
               grep -qi "location: /nextcloud/" cloud.headers && \
               curl --silent --show-error --fail --max-time 30 \
                 https://lemesolucoesemti.com.br/gov/ -o gov.html && \
-              grep -q "Brasil em dados" gov.html && \
+              grep -q "Licitações com foco em" gov.html && \
               curl --silent --show-error --head --max-time 30 \
                 https://lemesolucoesemti.com.br/invest/ -o invest.headers && \
               grep -qi "location: painel.php" invest.headers && \
