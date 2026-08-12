@@ -225,8 +225,7 @@ $updatedAt = tenderDate($meta['atualizadoEm'] ?? null, 'aguardando sincronizaç�
       <?php if ($totalPages > 1): ?><nav class="pagination" aria-label="Paginação"><a class="page-link<?= $currentPage <= 1 ? ' disabled' : '' ?>" href="<?= tenderH(tenderPageUrl($currentPage - 1, $filters)) ?>#licitacoes">← Anterior</a><span class="page-current">Página <?= $currentPage ?> de <?= $totalPages ?></span><a class="page-link<?= $currentPage >= $totalPages ? ' disabled' : '' ?>" href="<?= tenderH(tenderPageUrl($currentPage + 1, $filters)) ?>#licitacoes">Próxima →</a></nav><?php endif; ?>
       <p class="footnote">A classificação por setor é automática e indicativa. TI tem prioridade quando o objeto contém termos tecnológicos. Confirme sempre o edital e os anexos na fonte oficial.</p>
     </section>
-    <footer class="footer"><span>Fontes: portais municipais e API pública do PNCP.</span><span>Consulta sem senha; atualização gradual em segundo plano.</span></footer>
+    <footer class="footer"><span>Fontes: portais municipais e API pública do PNCP.</span><span>Consulta sem senha; atualização programada a cada 6 horas.</span></footer>
   </main>
-  <script>window.addEventListener('load',()=>{window.setTimeout(()=>fetch('/gov/atualizar-licitacoes.php',{method:'POST',cache:'no-store',keepalive:true}).catch(()=>{}),1200)});</script>
 </body>
 </html>
